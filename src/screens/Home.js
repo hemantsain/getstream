@@ -52,6 +52,7 @@ export const Home = () => {
       />
       {modalVisible && (
         <UserModal
+          modalVisible={modalVisible}
           item={selectedItem}
           closeModal={() => {
             setModalVisible(false);

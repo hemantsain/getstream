@@ -2,7 +2,11 @@ import React, { memo } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { useTheme } from '../hooks/ThemeContext';
 
-const ItemRow = props => {
+type ItemRowProps = {
+  title?: string,
+  value?: string,
+}
+const ItemRow: React.FC<ItemRowProps> = (props: ItemRowProps) => {
   const { title, value } = props;
 
   const { colors } = useTheme();

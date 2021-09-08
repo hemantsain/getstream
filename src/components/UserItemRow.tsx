@@ -1,8 +1,15 @@
 import React, { memo } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { useTheme } from '../hooks/ThemeContext';
+import { UserDataTypes } from '../types/UserDataTypes';
 
-const UserItemRow = props => {
+type UserItemRowProps = {
+  item: UserDataTypes,
+  onItemPress: () => void,
+  onItemLongPress: () => void,
+}
+
+const UserItemRow: React.FC<UserItemRowProps> = (props: UserItemRowProps) => {
   const { picture, name, phone } = props?.item;
   const { onItemPress, onItemLongPress } = props;
 

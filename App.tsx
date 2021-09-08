@@ -15,7 +15,7 @@ import { Home } from './src/screens/Home';
 
 LogBox.ignoreAllLogs();
 
-const App = () => {
+const App: React.FC = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {

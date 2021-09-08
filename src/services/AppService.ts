@@ -1,6 +1,6 @@
 import { GET_USER_API } from '../../env.json';
 
-export const getUsersData = async pageCount => {
+export const getUsersData = async (pageCount: number) => {
   try {
     const response = await fetch(
       `${GET_USER_API}?results=15&page${pageCount}`,

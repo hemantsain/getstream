@@ -2,8 +2,15 @@ import React, { memo } from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity } from 'react-native';
 import ItemRow from '../components/ItemRow';
 import { useTheme } from '../hooks/ThemeContext';
+import { UserDataTypes } from '../types/UserDataTypes';
 
-const UserModal = props => {
+type UserModalProps = {
+  item: UserDataTypes | null,
+  modalVisible: boolean,
+  closeModal: (value: boolean) => void,
+}
+
+const UserModal: React.FC<UserModalProps> = (props: UserModalProps) => {
   const { modalVisible, closeModal, item } = props;
   const { colors } = useTheme();
 

@@ -2,23 +2,35 @@ import React, { useEffect, useState } from 'react';
 import { useColorScheme } from 'react-native';
 import Dark from '../themes/Dark';
 import Light from '../themes/Light';
+import { ThemeTypes } from '../types/ThemeTypes';
+
+export type Theme = {
+  isDark: boolean,
+  colors: ThemeTypes,
+  setScheme: (value: string) => void
+}
 
 export const ThemeContext = React.createContext({
   isDark: false,
   colors: Light,
-  setScheme: () => {},
-});
+  setScheme: () => { },
+} as Theme);
 
-export const ThemeProvider = props => {
+type Props = {
+  children?: React.ReactNode;
+};
+
+export const ThemeProvider = (props: Props): JSX.Element => {
+  const { children } = props;
   const colorScheme = useColorScheme();
 
-  const [isDark, setIsDark] = useState(colorScheme === 'dark');
+  const [isDark, setIsDark] = useState<boolean>(colorScheme === 'dark');
 
   useEffect(() => {
     setIsDark(colorScheme === 'dark');
   }, [colorScheme]);
 
-  const defaultTheme = {
+  const defaultTheme: Theme = {
     isDark,
     colors: isDark ? Dark : Light,
     setScheme: scheme => setIsDark(scheme === 'dark'),
@@ -26,7 +38,7 @@ export const ThemeProvider = props => {
 
   return (
     <ThemeContext.Provider value={defaultTheme}>
-      {props.children}
+      {children}
     </ThemeContext.Provider>
   );
 };
